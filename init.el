@@ -14,6 +14,10 @@
   (load bootstrap-file nil 'nomessage))
 
 ;;--------------------------------------------------------------------
+;; python
+(setq python-shell-interpreter "/home/kdouglas/venvs/linters/bin/python")
+
+;;--------------------------------------------------------------------
 ;; interactively do things
 (require 'ido)
 (ido-mode t)
@@ -36,6 +40,14 @@
 ;; flycheck
 (straight-use-package 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
+(setq flycheck-python-flake8-executable "/home/kdouglas/venvs/linters/bin/flake8")
+(setq flycheck-python-pycompile-executable "/home/kdouglas/venvs/linters/bin/python3")
+
+;;--------------------------------------------------------------------
+;; misc syntax highlighting modes
+(straight-use-package 'yaml-mode)
+(straight-use-package 'hcl-mode)
+(straight-use-package 'jinja2-mode)
 
 ;;--------------------------------------------------------------------
 ;; Custom
