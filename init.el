@@ -15,7 +15,16 @@
 
 ;;--------------------------------------------------------------------
 ;; python
-(setq python-shell-interpreter "/home/kdouglas/venvs/linters/bin/python")
+(setenv "WORKON_HOME"
+	(concat
+	 (getenv "HOME")
+	 "/venvs"
+	))
+(setq python-shell-interpreter
+      (concat
+       (getenv "WORKON_HOME")
+       "/linters/bin/python"
+      ))
 
 ;;--------------------------------------------------------------------
 ;; interactively do things
@@ -39,8 +48,16 @@
 ;; flycheck
 (straight-use-package 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
-(setq flycheck-python-flake8-executable "/home/kdouglas/venvs/linters/bin/flake8")
-(setq flycheck-python-pycompile-executable "/home/kdouglas/venvs/linters/bin/python3")
+(setq flycheck-python-flake8-executable
+      (concat
+       (getenv "WORKON_HOME")
+       "/linters/bin/flake8"
+      ))
+(setq flycheck-python-pycompile-executable
+      (concat
+       (getenv "WORKON_HOME")
+       "/linters/bin/python3"
+      ))
 
 ;;--------------------------------------------------------------------
 ;; misc syntax highlighting modes
