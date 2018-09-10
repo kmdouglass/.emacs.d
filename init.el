@@ -15,7 +15,39 @@
 
 ;;--------------------------------------------------------------------
 ;; python
-(setq python-shell-interpreter "/home/kdouglas/venvs/linters/bin/python")
+
+;; configure directory containing virtual environments
+(setenv "WORKON_HOME"
+	(concat
+	 (getenv "HOME")
+	 "/venvs"
+	))
+(straight-use-package 'elpy)
+(elpy-enable)
+
+;; setup the Python linters for flycheck
+(defvar linter-execs '((flycheck-python-flake8-executable "bin/flake8")
+                       (flycheck-python-pylint-executable "bin/pylint")
+                       (flycheck-python-pycompile-executable "bin/python")))
+(defvar default-linter-venv-path (concat (getenv "WORKON_HOME") "/linters/"))
+
+(defun switch-linters ()
+  "Switch linter executables to those in the current venv.
+
+If the venv does not have any linter packages, then they will be
+set to those in the `default-linter-venv-path` venv.  If these do
+not exist, then no linter will be set."
+  (dolist (exec linter-execs)
+    (let ((venv-linter-bin    (concat pyvenv-virtual-env (nth 1 exec)))
+          (default-linter-bin (concat default-linter-venv-path (nth 1 exec)))
+	  (flycheck-var       (nth 0 exec)))
+      (cond ((file-exists-p venv-linter-bin)
+	     (set flycheck-var venv-linter-bin))
+            ((file-exists-p default-linter-bin)
+	     (set flycheck-var default-linter-bin))
+	    (t (set flycheck-var nil))))))
+
+(add-hook 'pyvenv-post-activate-hooks 'switch-linters)
 
 ;;--------------------------------------------------------------------
 ;; interactively do things
@@ -39,8 +71,6 @@
 ;; flycheck
 (straight-use-package 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
-(setq flycheck-python-flake8-executable "/home/kdouglas/venvs/linters/bin/flake8")
-(setq flycheck-python-pycompile-executable "/home/kdouglas/venvs/linters/bin/python3")
 
 ;;--------------------------------------------------------------------
 ;; misc syntax highlighting modes
