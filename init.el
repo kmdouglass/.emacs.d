@@ -20,11 +20,8 @@
 	 (getenv "HOME")
 	 "/venvs"
 	))
-(setq python-shell-interpreter
-      (concat
-       (getenv "WORKON_HOME")
-       "/linters/bin/python"
-      ))
+(straight-use-package 'elpy)
+(elpy-enable)
 
 ;;--------------------------------------------------------------------
 ;; interactively do things
