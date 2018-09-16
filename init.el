@@ -31,21 +31,18 @@
                        (flycheck-python-pycompile-executable "bin/python")))
 (defvar default-linter-venv-path (concat (getenv "WORKON_HOME") "/linters/"))
 
+
+;; Credit: Gareth Rees
+;; https://codereview.stackexchange.com/questions/203808/hook-to-switch-the-linter-binaries-in-emacs-lisp-according-to-virtual-environment
 (defun switch-linters ()
   "Switch linter executables to those in the current venv.
 
 If the venv does not have any linter packages, then they will be
 set to those in the `default-linter-venv-path` venv.  If these do
 not exist, then no linter will be set."
-  (dolist (exec linter-execs)
-    (let ((venv-linter-bin    (concat pyvenv-virtual-env (nth 1 exec)))
-          (default-linter-bin (concat default-linter-venv-path (nth 1 exec)))
-	  (flycheck-var       (nth 0 exec)))
-      (cond ((file-exists-p venv-linter-bin)
-	     (set flycheck-var venv-linter-bin))
-            ((file-exists-p default-linter-bin)
-	     (set flycheck-var default-linter-bin))
-	    (t (set flycheck-var nil))))))
+(cl-loop with dirs = (list pyvenv-virtual-env default-linter-venv-path)
+         for (flycheck-var path) in linter-execs
+         do (set flycheck-var (locate-file path dirs nil 'file-executable-p))))
 
 (add-hook 'pyvenv-post-activate-hooks 'switch-linters)
 
