@@ -74,6 +74,7 @@ not exist, then no linter will be set."
 (straight-use-package 'yaml-mode)
 (straight-use-package 'hcl-mode)
 (straight-use-package 'jinja2-mode)
+(straight-use-package 'markdown-mode)
 
 ;;--------------------------------------------------------------------
 ;; Custom
