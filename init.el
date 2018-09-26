@@ -22,8 +22,11 @@
 	 (getenv "HOME")
 	 "/venvs"
 	))
+
+;; elpy configuration
 (straight-use-package 'elpy)
 (elpy-enable)
+(setq elpy-rpc-backend "jedi")
 
 ;; setup the Python linters for flycheck
 (defvar linter-execs '((flycheck-python-flake8-executable "bin/flake8")
