@@ -78,6 +78,7 @@ not exist, then no linter will be set."
 (straight-use-package 'hcl-mode)
 (straight-use-package 'jinja2-mode)
 (straight-use-package 'markdown-mode)
+(straight-use-package 'dockerfile-mode)
 
 ;;--------------------------------------------------------------------
 ;; Custom
