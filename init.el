@@ -28,6 +28,15 @@
 (elpy-enable)
 (setq elpy-rpc-backend "jedi")
 
+;; Automatically run Black on buffer save
+(add-hook 'elpy-mode-hook
+          '(lambda ()
+             (when (eq major-mode 'python-mode)
+               (add-hook 'before-save-hook 'elpy-black-fix-code))))
+
+;; Disable flymake in elpy
+(setq elpy-modules (delete 'elpy-module-flymake elpy-modules))
+
 ;; setup the Python linters for flycheck
 (defvar linter-execs '((flycheck-python-flake8-executable "bin/flake8")
                        (flycheck-python-pylint-executable "bin/pylint")
