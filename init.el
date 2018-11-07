@@ -70,6 +70,8 @@ not exist, then no linter will be set."
   global-fci-mode fci-mode (lambda () (fci-mode 1)))
 (global-fci-mode t)
 
+(setq-default fill-column 99)
+
 ;;--------------------------------------------------------------------
 ;; auto-complete mode
 (straight-use-package 'auto-complete)
