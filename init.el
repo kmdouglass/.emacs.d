@@ -14,6 +14,11 @@
   (load bootstrap-file nil 'nomessage))
 
 ;;--------------------------------------------------------------------
+;; Remap keys (Colemak friendly)
+(global-set-key (kbd "C-t") 'forward-char)
+(global-set-key (kbd "C-f") 'backward-char)
+
+;;--------------------------------------------------------------------
 ;; python
 
 ;; configure directory containing virtual environments
