@@ -28,6 +28,9 @@
 	 "/venvs"
 	))
 
+;; Enable line numbers
+(add-hook 'python-mode-hook 'display-line-numbers-mode)
+
 ;; elpy configuration
 (straight-use-package 'elpy)
 (elpy-enable)
