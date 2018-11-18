@@ -1,4 +1,4 @@
-;;--------------------------------------------------------------------
+;;-------------------------------------------------------------------------------------------------
 ;; straight.el bootstrap
 (defvar bootstrap-version)
 (let ((bootstrap-file
@@ -13,13 +13,18 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
-;;--------------------------------------------------------------------
+;;-------------------------------------------------------------------------------------------------
 ;; Remap keys (Colemak friendly)
 (global-set-key (kbd "C-t") 'forward-char)
 (global-set-key (kbd "C-f") 'backward-char)
 
-;;--------------------------------------------------------------------
-;; python
+;;-------------------------------------------------------------------------------------------------
+;; Company mode
+(straight-use-package 'company)
+(add-hook 'after-init-hook 'global-company-mode)
+
+;;-------------------------------------------------------------------------------------------------
+;; Python
 
 ;; configure directory containing virtual environments
 (setenv "WORKON_HOME"
@@ -66,12 +71,35 @@ not exist, then no linter will be set."
 
 (add-hook 'pyvenv-post-activate-hooks 'switch-linters)
 
-;;--------------------------------------------------------------------
+;;-------------------------------------------------------------------------------------------------
+;; C/C++
+
+(require 'semantic)
+(global-semanticdb-minor-mode t)
+(global-semantic-idle-scheduler-mode t)
+(semantic-mode t)
+
+;; Enable semantic mode for just C/C++
+(setq semantic-new-buffer-setup-functions '((c-mode . semantic-default-c-setup)
+					    (c++-mode . semantic-default-c-setup)))
+
+;; Enable EDE mode and project files (for code completion)
+(global-ede-mode t)
+(setq ede-custom-file (expand-file-name "cc-mode-projects.el" user-emacs-directory))
+(when (file-exists-p ede-custom-file)
+  (load ede-custom-file))
+
+;; Use company-header for header completion
+(straight-use-package 'company-c-headers)
+(add-to-list 'company-backends 'company-c-headers)
+
+
+;;-------------------------------------------------------------------------------------------------
 ;; interactively do things
 (require 'ido)
 (ido-mode t)
 
-;;--------------------------------------------------------------------
+;;-------------------------------------------------------------------------------------------------
 ;; fill-column-indicator
 (straight-use-package 'fill-column-indicator)
 (define-globalized-minor-mode
@@ -80,18 +108,12 @@ not exist, then no linter will be set."
 
 (setq-default fill-column 99)
 
-;;--------------------------------------------------------------------
-;; auto-complete mode
-(straight-use-package 'auto-complete)
-(ac-config-default)
-(global-auto-complete-mode t)
-
-;;--------------------------------------------------------------------
+;;-------------------------------------------------------------------------------------------------
 ;; flycheck
 (straight-use-package 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
-;;--------------------------------------------------------------------
+;;-------------------------------------------------------------------------------------------------
 ;; misc syntax highlighting modes
 (straight-use-package 'yaml-mode)
 (straight-use-package 'hcl-mode)
@@ -99,7 +121,7 @@ not exist, then no linter will be set."
 (straight-use-package 'markdown-mode)
 (straight-use-package 'dockerfile-mode)
 
-;;--------------------------------------------------------------------
+;;-------------------------------------------------------------------------------------------------
 ;; Tip of the day
 ;; https://gist.github.com/saintaardvark/375aa054c15f02c42f45
 
@@ -118,7 +140,7 @@ not exist, then no linter will be set."
                  (where-is command t)
 (buffer-string)))))))
 (totd)
-;;--------------------------------------------------------------------
+;;-------------------------------------------------------------------------------------------------
 ;; Custom
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
