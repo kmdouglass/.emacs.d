@@ -93,6 +93,16 @@ not exist, then no linter will be set."
 (straight-use-package 'company-c-headers)
 (add-to-list 'company-backends 'company-c-headers)
 
+;;-------------------------------------------------------------------------------------------------
+;; shell
+(add-hook 'sh-mode-hook 'display-line-numbers-mode)
+
+;; Set the cabal directory, where cabal is installed
+(defvar shellcheck-executable (concat (getenv "HOME") "/.cabal/bin/shellcheck")
+  "The location of the shellcheck executable.")
+(if (file-exists-p shellcheck-executable)
+    (setq flycheck-sh-shellcheck-executable shellcheck-executable))
+(add-hook 'sh-mode-hook 'flycheck-mode)
 
 ;;-------------------------------------------------------------------------------------------------
 ;; interactively do things
