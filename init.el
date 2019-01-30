@@ -129,11 +129,12 @@ not exist, then no linter will be set."
 
 ;;-------------------------------------------------------------------------------------------------
 ;; misc syntax highlighting modes
-(straight-use-package 'yaml-mode)
+(straight-use-package 'cmake-mode)
+(straight-use-package 'dockerfile-mode)
 (straight-use-package 'hcl-mode)
 (straight-use-package 'jinja2-mode)
 (straight-use-package 'markdown-mode)
-(straight-use-package 'dockerfile-mode)
+(straight-use-package 'yaml-mode)
 
 ;;-------------------------------------------------------------------------------------------------
 ;; Tip of the day
