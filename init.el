@@ -79,6 +79,10 @@ not exist, then no linter will be set."
 (global-semantic-idle-scheduler-mode t)
 (semantic-mode t)
 
+;; Enable line numbers
+(add-hook 'c++-mode-hook 'display-line-numbers-mode)
+(add-hook 'c-mode 'display-line-numbers-mode)
+
 ;; Enable semantic mode for just C/C++
 (setq semantic-new-buffer-setup-functions '((c-mode . semantic-default-c-setup)
 					    (c++-mode . semantic-default-c-setup)))
