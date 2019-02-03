@@ -163,4 +163,6 @@ not exist, then no linter will be set."
  ;; If you edit it by hand, you could mess it up, so be careful.
  ;; Your init file should contain only one such instance.
  ;; If there is more than one, they won't work right.
- )
+
+ ;; Fix dark blue font color in the terminal
+ '(term-color-blue ((t (:background "deep sky blue" :foreground "deep sky blue")))))
