@@ -24,6 +24,31 @@
 (add-hook 'after-init-hook 'global-company-mode)
 
 ;;-------------------------------------------------------------------------------------------------
+;; ggtags
+(straight-use-package 'ggtags)
+(require 'ggtags)
+(add-hook 'c-mode-common-hook
+          (lambda ()
+            (when (derived-mode-p 'c-mode 'c++-mode)
+              (ggtags-mode 1))))
+
+(define-key ggtags-mode-map (kbd "C-c g s") 'ggtags-find-other-symbol)
+(define-key ggtags-mode-map (kbd "C-c g h") 'ggtags-view-tag-history)
+(define-key ggtags-mode-map (kbd "C-c g r") 'ggtags-find-reference)
+(define-key ggtags-mode-map (kbd "C-c g f") 'ggtags-find-file)
+(define-key ggtags-mode-map (kbd "C-c g c") 'ggtags-create-tags)
+(define-key ggtags-mode-map (kbd "C-c g u") 'ggtags-update-tags)
+
+(define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark)
+
+;;-------------------------------------------------------------------------------------------------
+;; gdb
+
+(setq
+ ;; use gdb-many-windows by default
+ gdb-many-windows t)
+
+;;-------------------------------------------------------------------------------------------------
 ;; Python
 
 ;; configure directory containing virtual environments
@@ -74,14 +99,14 @@ not exist, then no linter will be set."
 ;;-------------------------------------------------------------------------------------------------
 ;; C/C++
 
+;; Enable line numbers
+(add-hook 'c++-mode-hook 'display-line-numbers-mode)
+(add-hook 'c-mode 'display-line-numbers-mode)
+
 (require 'semantic)
 (global-semanticdb-minor-mode t)
 (global-semantic-idle-scheduler-mode t)
 (semantic-mode t)
-
-;; Enable line numbers
-(add-hook 'c++-mode-hook 'display-line-numbers-mode)
-(add-hook 'c-mode 'display-line-numbers-mode)
 
 ;; Enable semantic mode for just C/C++
 (setq semantic-new-buffer-setup-functions '((c-mode . semantic-default-c-setup)
