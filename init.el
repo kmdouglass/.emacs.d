@@ -134,6 +134,10 @@ not exist, then no linter will be set."
 (add-hook 'sh-mode-hook 'flycheck-mode)
 
 ;;-------------------------------------------------------------------------------------------------
+;; Rust
+(add-hook 'rust-mode-hook 'display-line-numbers-mode)
+
+;;-------------------------------------------------------------------------------------------------
 ;; interactively do things
 (require 'ido)
 (ido-mode t)
