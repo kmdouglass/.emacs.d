@@ -18,6 +18,9 @@
 (global-set-key (kbd "C-t") 'forward-char)
 (global-set-key (kbd "C-f") 'backward-char)
 
+;; ibuffer
+(global-set-key (kbd"C-x C-b") 'ibuffer)
+
 ;;-------------------------------------------------------------------------------------------------
 ;; Company mode
 (straight-use-package 'company)
