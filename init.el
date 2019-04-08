@@ -164,24 +164,9 @@ not exist, then no linter will be set."
 (straight-use-package 'yaml-mode)
 
 ;;-------------------------------------------------------------------------------------------------
-;; Tip of the day
-;; https://gist.github.com/saintaardvark/375aa054c15f02c42f45
+;; Start fullscreen
+(add-to-list 'default-frame-alist '(fullscreen . maximized))
 
-(defun totd ()
-  (interactive)
-  (with-output-to-temp-buffer "*Tip of the day*"
-    (let* ((commands (cl-loop for s being the symbols
-                           when (commandp s) collect s))
-           (command (nth (random (length commands)) commands)))
-      (princ
-       (concat "Your tip for the day is:\n"
-               "========================\n\n"
-               (describe-function command)
-               "\n\nInvoke with:\n\n"
-               (with-temp-buffer
-                 (where-is command t)
-(buffer-string)))))))
-(totd)
 ;;-------------------------------------------------------------------------------------------------
 ;; Custom
 (custom-set-variables
