@@ -142,6 +142,7 @@ not exist, then no linter will be set."
 ;; interactively do things
 (require 'ido)
 (ido-mode t)
+(setq ido-enable-flex-matching t)
 
 ;;-------------------------------------------------------------------------------------------------
 ;; fill-column-indicator
