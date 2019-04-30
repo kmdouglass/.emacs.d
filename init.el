@@ -27,6 +27,10 @@
 (add-hook 'after-init-hook 'global-company-mode)
 
 ;;-------------------------------------------------------------------------------------------------
+;; Org mode
+(straight-use-package 'org)
+
+;;-------------------------------------------------------------------------------------------------
 ;; ggtags
 (straight-use-package 'ggtags)
 (require 'ggtags)
