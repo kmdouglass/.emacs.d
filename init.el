@@ -139,6 +139,10 @@ not exist, then no linter will be set."
 (add-hook 'rust-mode-hook 'display-line-numbers-mode)
 
 ;;-------------------------------------------------------------------------------------------------
+;; Go
+(add-hook 'go-mode-hook 'display-line-numbers-mode)
+
+;;-------------------------------------------------------------------------------------------------
 ;; interactively do things
 (require 'ido)
 (ido-mode t)
