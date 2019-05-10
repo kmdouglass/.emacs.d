@@ -135,11 +135,17 @@ not exist, then no linter will be set."
 (add-hook 'sh-mode-hook 'flycheck-mode)
 
 ;;-------------------------------------------------------------------------------------------------
+;; Powershell
+(straight-use-package 'powershell)
+(add-hook 'powershell-mode-hook 'display-line-numbers-mode)
+
+;;-------------------------------------------------------------------------------------------------
 ;; Rust
 (add-hook 'rust-mode-hook 'display-line-numbers-mode)
 
 ;;-------------------------------------------------------------------------------------------------
 ;; Go
+(straight-use-package 'go-mode)
 (add-hook 'go-mode-hook 'display-line-numbers-mode)
 
 ;;-------------------------------------------------------------------------------------------------
