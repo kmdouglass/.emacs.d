@@ -146,7 +146,12 @@ not exist, then no linter will be set."
 ;;-------------------------------------------------------------------------------------------------
 ;; Go
 (straight-use-package 'go-mode)
-(add-hook 'go-mode-hook 'display-line-numbers-mode)
+(add-hook 'go-mode-hook
+          (lambda ()
+            (add-hook 'before-save-hook 'gofmt-before-save)
+            (setq tab-width 4)
+            (setq indent-tabs-mode 1)
+	    (display-line-numbers-mode)))
 
 ;;-------------------------------------------------------------------------------------------------
 ;; interactively do things
