@@ -145,6 +145,10 @@ not exist, then no linter will be set."
 
 ;;-------------------------------------------------------------------------------------------------
 ;; Go
+
+;; This is required for go-mode to find gofmt because Emacs doesn't use the same PATH as my shell
+(setq exec-path (append exec-path '("/usr/local/go/bin")))
+
 (straight-use-package 'go-mode)
 (add-hook 'go-mode-hook
           (lambda ()
