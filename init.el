@@ -25,6 +25,8 @@
 ;; Company mode
 (straight-use-package 'company)
 (add-hook 'after-init-hook 'global-company-mode)
+(setq company-tooltip-limit 10) ; bigger popup window
+(setq company-idle-delay .3)    ; decrease delay before autocompletion popup shows
 
 ;;-------------------------------------------------------------------------------------------------
 ;; Org mode
@@ -146,10 +148,9 @@ not exist, then no linter will be set."
 ;;-------------------------------------------------------------------------------------------------
 ;; Go
 
-;; This is required for go-mode to find gofmt because Emacs doesn't use the same PATH as my shell
-(setq exec-path (append exec-path '("/usr/local/go/bin")))
-
 (straight-use-package 'go-mode)
+(straight-use-package 'govet)
+(straight-use-package 'company-go)
 (add-hook 'go-mode-hook
           (lambda ()
             (add-hook 'before-save-hook 'gofmt-before-save)
