@@ -145,6 +145,12 @@ not exist, then no linter will be set."
 ;; Rust
 (add-hook 'rust-mode-hook 'display-line-numbers-mode)
 
+(straight-use-package 'cargo)
+(add-hook 'rust-mode-hook 'cargo-minor-mode)
+
+(straight-use-package 'flycheck-rust)
+(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
+
 ;;-------------------------------------------------------------------------------------------------
 ;; Go
 
