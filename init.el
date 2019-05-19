@@ -156,6 +156,7 @@ not exist, then no linter will be set."
 
 (straight-use-package 'go-mode)
 (straight-use-package 'govet)
+(straight-use-package 'golint)
 (straight-use-package 'company-go)
 (add-hook 'go-mode-hook
           (lambda ()
@@ -163,6 +164,10 @@ not exist, then no linter will be set."
             (setq tab-width 4)
             (setq indent-tabs-mode 1)
 	    (display-line-numbers-mode)))
+
+(with-eval-after-load 'flycheck
+  (flycheck-add-mode 'go-vet 'go-mode)
+  (flycheck-add-mode 'go-golint 'go-mode))
 
 ;;-------------------------------------------------------------------------------------------------
 ;; interactively do things
