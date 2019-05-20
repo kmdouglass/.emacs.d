@@ -22,6 +22,11 @@
 (global-set-key (kbd"C-x C-b") 'ibuffer)
 
 ;;-------------------------------------------------------------------------------------------------
+;; flycheck
+(straight-use-package 'flycheck)
+(add-hook 'after-init-hook #'global-flycheck-mode)
+
+;;-------------------------------------------------------------------------------------------------
 ;; Company mode
 (straight-use-package 'company)
 (add-hook 'after-init-hook 'global-company-mode)
@@ -165,10 +170,6 @@ not exist, then no linter will be set."
             (setq indent-tabs-mode 1)
 	    (display-line-numbers-mode)))
 
-(with-eval-after-load 'flycheck
-  (flycheck-add-mode 'go-vet 'go-mode)
-  (flycheck-add-mode 'go-golint 'go-mode))
-
 ;;-------------------------------------------------------------------------------------------------
 ;; interactively do things
 (require 'ido)
@@ -183,11 +184,6 @@ not exist, then no linter will be set."
 (global-fci-mode t)
 
 (setq-default fill-column 99)
-
-;;-------------------------------------------------------------------------------------------------
-;; flycheck
-(straight-use-package 'flycheck)
-(add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;;-------------------------------------------------------------------------------------------------
 ;; misc syntax highlighting modes
