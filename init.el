@@ -22,6 +22,21 @@
 (global-set-key (kbd"C-x C-b") 'ibuffer)
 
 ;;-------------------------------------------------------------------------------------------------
+;; interactively do things
+(require 'ido)
+(ido-mode t)
+(setq ido-enable-flex-matching t)
+
+;;-------------------------------------------------------------------------------------------------
+;; fill-column-indicator
+(straight-use-package 'fill-column-indicator)
+(define-globalized-minor-mode
+  global-fci-mode fci-mode (lambda () (fci-mode 1)))
+(global-fci-mode t)
+
+(setq-default fill-column 99)
+
+;;-------------------------------------------------------------------------------------------------
 ;; flycheck
 (straight-use-package 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
@@ -148,6 +163,7 @@ not exist, then no linter will be set."
 
 ;;-------------------------------------------------------------------------------------------------
 ;; Rust
+(straight-use-package 'rust-mode)
 (add-hook 'rust-mode-hook 'display-line-numbers-mode)
 
 (straight-use-package 'cargo)
@@ -171,28 +187,17 @@ not exist, then no linter will be set."
 	    (display-line-numbers-mode)))
 
 ;;-------------------------------------------------------------------------------------------------
-;; interactively do things
-(require 'ido)
-(ido-mode t)
-(setq ido-enable-flex-matching t)
-
-;;-------------------------------------------------------------------------------------------------
-;; fill-column-indicator
-(straight-use-package 'fill-column-indicator)
-(define-globalized-minor-mode
-  global-fci-mode fci-mode (lambda () (fci-mode 1)))
-(global-fci-mode t)
-
-(setq-default fill-column 99)
+;; HCL
+(straight-use-package 'hcl-mode)
+(add-hook 'hcl-mode-hook 'display-line-numbers-mode)
+(add-to-list 'auto-mode-alist '("\\.tf" . hcl-mode))
 
 ;;-------------------------------------------------------------------------------------------------
 ;; misc syntax highlighting modes
 (straight-use-package 'cmake-mode)
 (straight-use-package 'dockerfile-mode)
-(straight-use-package 'hcl-mode)
 (straight-use-package 'jinja2-mode)
 (straight-use-package 'markdown-mode)
-(straight-use-package 'rust-mode)
 (straight-use-package 'yaml-mode)
 
 ;;-------------------------------------------------------------------------------------------------
