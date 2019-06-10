@@ -202,7 +202,7 @@ not exist, then no linter will be set."
 ;;-------------------------------------------------------------------------------------------------
 ;; JSON
 (straight-use-package 'json-mode)
-
+(add-hook 'json-mode-hook 'display-line-numbers-mode)
 
 ;;-------------------------------------------------------------------------------------------------
 ;; misc syntax highlighting modes
