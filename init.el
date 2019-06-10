@@ -193,6 +193,18 @@ not exist, then no linter will be set."
 (add-to-list 'auto-mode-alist '("\\.tf" . hcl-mode))
 
 ;;-------------------------------------------------------------------------------------------------
+;; NPM
+(defvar npm-home)
+(setq npm-home (concat (getenv "HOME") "/npm/bin"))
+(setenv "PATH" (concat (getenv "PATH") (concat ":" npm-home)))
+(setq exec-path (append exec-path npm-home))
+
+;;-------------------------------------------------------------------------------------------------
+;; JSON
+(straight-use-package 'json-mode)
+
+
+;;-------------------------------------------------------------------------------------------------
 ;; misc syntax highlighting modes
 (straight-use-package 'cmake-mode)
 (straight-use-package 'dockerfile-mode)
