@@ -194,10 +194,9 @@ not exist, then no linter will be set."
 
 ;;-------------------------------------------------------------------------------------------------
 ;; NPM
-(defvar npm-home)
-(setq npm-home (concat (getenv "HOME") "/npm/bin"))
-(setenv "PATH" (concat (getenv "PATH") (concat ":" npm-home)))
-(setq exec-path (append exec-path npm-home))
+(let ((npm-home (concat (getenv "HOME") "/npm/bin")))
+  (setenv "PATH" (concat (getenv "PATH") (concat ":" npm-home)))
+  (setq exec-path (append exec-path (list npm-home))))
 
 ;;-------------------------------------------------------------------------------------------------
 ;; JSON
