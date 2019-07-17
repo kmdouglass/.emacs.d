@@ -202,6 +202,10 @@ not exist, then no linter will be set."
 ;; JSON
 (straight-use-package 'json-mode)
 (add-hook 'json-mode-hook 'display-line-numbers-mode)
+(add-hook 'json-mode-hook
+          (lambda ()
+            (make-local-variable 'js-indent-level)
+            (setq js-indent-level 2)))
 
 ;;-------------------------------------------------------------------------------------------------
 ;; misc syntax highlighting modes
