@@ -52,6 +52,16 @@
 ;; Org mode
 (straight-use-package 'org)
 
+(setq todo-file "~/Dropbox/Org/todo-kmd.org")
+(define-key global-map "\C-cl" 'org-store-link)
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-log-done t)
+
+(setq org-agenda-files (list todo-file))
+
+;; Open TODO file on startup
+(setq initial-buffer-choice todo-file)
+
 ;;-------------------------------------------------------------------------------------------------
 ;; ggtags
 (straight-use-package 'ggtags)
