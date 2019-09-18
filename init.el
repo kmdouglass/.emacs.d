@@ -60,7 +60,11 @@
 (setq org-agenda-files (list todo-file))
 
 ;; Open TODO file on startup
-(setq initial-buffer-choice todo-file)
+(defun open-todos (switch)
+  "Opens the todos file"
+  (setq initial-buffer-choice todo-file))
+(add-to-list 'command-switch-alist '("-todos" . open-todos))
+
 
 ;;-------------------------------------------------------------------------------------------------
 ;; ggtags
@@ -226,7 +230,7 @@ not exist, then no linter will be set."
 (straight-use-package 'yaml-mode)
 
 ;;-------------------------------------------------------------------------------------------------
-;; Start fullscreen
+;; Generic startup options
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;;-------------------------------------------------------------------------------------------------
