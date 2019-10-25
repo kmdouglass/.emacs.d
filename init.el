@@ -234,6 +234,10 @@ not exist, then no linter will be set."
 (add-to-list 'default-frame-alist '(fullscreen . maximized))
 
 ;;-------------------------------------------------------------------------------------------------
+;; Remove the toolbar
+(tool-bar-mode -1)
+
+;;-------------------------------------------------------------------------------------------------
 ;; Custom
 (custom-set-variables
  ;; custom-set-variables was added by Custom.
