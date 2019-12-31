@@ -50,7 +50,17 @@
 
 ;;-------------------------------------------------------------------------------------------------
 ;; Org mode
-(straight-use-package 'org)
+
+;; Use org-mode from source code if it exists
+(defvar kmdouglass-org-home (getenv "ORG_HOME")
+  "The home directory of the `org-mode` source code.")
+(if kmdouglass-org-home
+    (progn
+      (message "ORG_HOME defined; using custom org-mode directory")
+      (add-to-list 'load-path (concat kmdouglass-org-home "/lisp"))
+      (add-to-list 'load-path (concat kmdouglass-org-home "/contrib/lisp") t)
+      (require 'org))
+    (straight-use-package 'org))
 
 (setq todo-file "~/Dropbox/Org/todo-kmd.org")
 (define-key global-map "\C-cl" 'org-store-link)
