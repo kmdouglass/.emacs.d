@@ -13,6 +13,12 @@
       (eval-print-last-sexp)))
   (load bootstrap-file nil 'nomessage))
 
+;; Read .bashrc on startup
+(straight-use-package 'exec-path-from-shell)
+(setq exec-path-from-shell-variables
+      (list "PATH" "MANPATH" "ORG_SOURCE" "WORKON_HOME"))
+(exec-path-from-shell-initialize)
+
 ;;-------------------------------------------------------------------------------------------------
 ;; Remap keys (Colemak friendly)
 (global-set-key (kbd "C-t") 'forward-char)
@@ -52,29 +58,44 @@
 ;; Org mode
 
 ;; Use org-mode from source code if it exists
-(defvar kmdouglass-org-home (getenv "ORG_HOME")
+(defvar kmdouglass-org-source (getenv "ORG_SOURCE")
   "The home directory of the `org-mode` source code.")
-(if kmdouglass-org-home
+(if kmdouglass-org-source
     (progn
-      (message "ORG_HOME defined; using custom org-mode directory")
-      (add-to-list 'load-path (concat kmdouglass-org-home "/lisp"))
-      (add-to-list 'load-path (concat kmdouglass-org-home "/contrib/lisp") t)
-      (require 'org))
+      (message "ORG_SOURCE defined; using custom org-mode directory")
+      (add-to-list 'load-path (concat kmdouglass-org-source "/lisp"))
+      (add-to-list 'load-path (concat kmdouglass-org-source "/contrib/lisp") t)
+      (require 'org)
+      (require 'org-protocol))
     (straight-use-package 'org))
 
-(setq todo-file "~/Dropbox/Org/todo-kmd.org")
-(define-key global-map "\C-cl" 'org-store-link)
-(define-key global-map "\C-ca" 'org-agenda)
-(setq org-log-done t)
+(setq org-directory "~/Dropbox/Org/")
 
-(setq org-agenda-files (list todo-file))
+;; Todos
+(setq todo-file (concat org-directory "todo-kmd.org"))
 
-;; Open TODO file on startup
 (defun open-todos (switch)
-  "Opens the todos file"
+  "Opens the todos file on startup"
   (setq initial-buffer-choice todo-file))
 (add-to-list 'command-switch-alist '("-todos" . open-todos))
 
+;; Agenda
+(define-key global-map "\C-ca" 'org-agenda)
+(setq org-agenda-files (list todo-file))
+
+;; Capture
+(define-key global-map "\C-cc" 'org-capture)
+(define-key global-map "\C-cl" 'org-store-link)
+(setq org-default-notes-file (concat org-directory "todo-kmd.org"))
+(setq org-capture-templates
+      '(("t" "TODO" entry (file "")
+         "* TODO %?\n  %i\n")
+	("p" "TODO-org-protocol" entry (file "")
+	 "* TODO %:link\n %i\n"
+	 :immediate-finish 1 :empty-lines 1)))
+
+;; Misc
+(setq org-log-done t)
 
 ;;-------------------------------------------------------------------------------------------------
 ;; ggtags
@@ -103,14 +124,6 @@
 
 ;;-------------------------------------------------------------------------------------------------
 ;; Python
-
-;; configure directory containing virtual environments
-(setenv "WORKON_HOME"
-	(concat
-	 (getenv "HOME")
-	 "/venvs"
-	))
-
 ;; Enable line numbers
 (add-hook 'python-mode-hook 'display-line-numbers-mode)
 
