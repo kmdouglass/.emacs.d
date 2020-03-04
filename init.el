@@ -94,6 +94,11 @@
 	 "* TODO %:link\n %i\n"
 	 :immediate-finish 1 :empty-lines 1)))
 
+;; Language integrations
+(org-babel-do-load-languages 'org-babel-load-languages '(
+    (ditaa . t))
+)
+
 ;; Misc
 (setq org-log-done t)
 
