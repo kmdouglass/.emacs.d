@@ -52,7 +52,7 @@
 (straight-use-package 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-tooltip-limit 10) ; bigger popup window
-(setq company-idle-delay .3)    ; decrease delay before autocompletion popup shows
+(setq company-idle-delay .2)    ; decrease delay before autocompletion popup shows
 
 ;;-------------------------------------------------------------------------------------------------
 ;; Org mode
@@ -103,24 +103,6 @@
 (setq org-log-done t)
 
 ;;-------------------------------------------------------------------------------------------------
-;; ggtags
-(straight-use-package 'ggtags)
-(require 'ggtags)
-(add-hook 'c-mode-common-hook
-          (lambda ()
-            (when (derived-mode-p 'c-mode 'c++-mode)
-              (ggtags-mode 1))))
-
-(define-key ggtags-mode-map (kbd "C-c g s") 'ggtags-find-other-symbol)
-(define-key ggtags-mode-map (kbd "C-c g h") 'ggtags-view-tag-history)
-(define-key ggtags-mode-map (kbd "C-c g r") 'ggtags-find-reference)
-(define-key ggtags-mode-map (kbd "C-c g f") 'ggtags-find-file)
-(define-key ggtags-mode-map (kbd "C-c g c") 'ggtags-create-tags)
-(define-key ggtags-mode-map (kbd "C-c g u") 'ggtags-update-tags)
-
-(define-key ggtags-mode-map (kbd "M-,") 'pop-tag-mark)
-
-;;-------------------------------------------------------------------------------------------------
 ;; gdb
 
 (setq
@@ -128,64 +110,15 @@
  gdb-many-windows t)
 
 ;;-------------------------------------------------------------------------------------------------
+;; Programming language specifics
+
 ;; Python
-;; Enable line numbers
+(load-file ".emacs.d/dev-python.el")
 (add-hook 'python-mode-hook 'display-line-numbers-mode)
 
-;; elpy configuration
-(straight-use-package 'elpy)
-(elpy-enable)
-(setq elpy-rpc-backend "jedi")
-
-;; Disable flymake in elpy
-(setq elpy-modules (delete 'elpy-module-flymake elpy-modules))
-
-;; setup the Python linters for flycheck
-(defvar linter-execs '((flycheck-python-flake8-executable "bin/flake8")
-                       (flycheck-python-pylint-executable "bin/pylint")
-                       (flycheck-python-pycompile-executable "bin/python")))
-(defvar default-linter-venv-path (concat (getenv "WORKON_HOME") "/linters/"))
-
-
-;; Credit: Gareth Rees
-;; https://codereview.stackexchange.com/questions/203808/hook-to-switch-the-linter-binaries-in-emacs-lisp-according-to-virtual-environment
-(defun switch-linters ()
-  "Switch linter executables to those in the current venv.
-
-If the venv does not have any linter packages, then they will be
-set to those in the `default-linter-venv-path` venv.  If these do
-not exist, then no linter will be set."
-(cl-loop with dirs = (list pyvenv-virtual-env default-linter-venv-path)
-         for (flycheck-var path) in linter-execs
-         do (set flycheck-var (locate-file path dirs nil 'file-executable-p))))
-
-(add-hook 'pyvenv-post-activate-hooks 'switch-linters)
-
-;;-------------------------------------------------------------------------------------------------
 ;; C/C++
-
-;; Enable line numbers
 (add-hook 'c++-mode-hook 'display-line-numbers-mode)
 (add-hook 'c-mode 'display-line-numbers-mode)
-
-(require 'semantic)
-(global-semanticdb-minor-mode t)
-(global-semantic-idle-scheduler-mode t)
-(semantic-mode t)
-
-;; Enable semantic mode for just C/C++
-(setq semantic-new-buffer-setup-functions '((c-mode . semantic-default-c-setup)
-					    (c++-mode . semantic-default-c-setup)))
-
-;; Enable EDE mode and project files (for code completion)
-(global-ede-mode t)
-(setq ede-custom-file (expand-file-name "cc-mode-projects.el" user-emacs-directory))
-(when (file-exists-p ede-custom-file)
-  (load ede-custom-file))
-
-;; Use company-header for header completion
-(straight-use-package 'company-c-headers)
-(add-to-list 'company-backends 'company-c-headers)
 
 ;;-------------------------------------------------------------------------------------------------
 ;; shell
