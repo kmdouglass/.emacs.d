@@ -48,11 +48,18 @@
 (add-hook 'after-init-hook #'global-flycheck-mode)
 
 ;;-------------------------------------------------------------------------------------------------
+;; lsp
+(straight-use-package 'lsp-mode)
+(straight-use-package 'lsp-ui)
+
+;;-------------------------------------------------------------------------------------------------
 ;; Company mode
 (straight-use-package 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-tooltip-limit 10) ; bigger popup window
 (setq company-idle-delay .2)    ; decrease delay before autocompletion popup shows
+
+(straight-use-package 'company-lsp)
 
 ;;-------------------------------------------------------------------------------------------------
 ;; Org mode
@@ -116,9 +123,17 @@
 (load-file ".emacs.d/dev-python.el")
 (add-hook 'python-mode-hook 'display-line-numbers-mode)
 
+;; Rust
+(load-file ".emacs.d/dev-rust.el")
+(add-hook 'rust-mode-hook 'display-line-numbers-mode)
+
 ;; C/C++
 (add-hook 'c++-mode-hook 'display-line-numbers-mode)
 (add-hook 'c-mode 'display-line-numbers-mode)
+
+;;-------------------------------------------------------------------------------------------------
+;; elisp
+(add-hook 'emacs-lisp-mode-hook 'display-line-numbers-mode)
 
 ;;-------------------------------------------------------------------------------------------------
 ;; shell
@@ -135,17 +150,6 @@
 ;; Powershell
 (straight-use-package 'powershell)
 (add-hook 'powershell-mode-hook 'display-line-numbers-mode)
-
-;;-------------------------------------------------------------------------------------------------
-;; Rust
-(straight-use-package 'rust-mode)
-(add-hook 'rust-mode-hook 'display-line-numbers-mode)
-
-(straight-use-package 'cargo)
-(add-hook 'rust-mode-hook 'cargo-minor-mode)
-
-(straight-use-package 'flycheck-rust)
-(add-hook 'flycheck-mode-hook #'flycheck-rust-setup)
 
 ;;-------------------------------------------------------------------------------------------------
 ;; Go
