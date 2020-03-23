@@ -106,9 +106,25 @@
     (ditaa . t))
 )
 
+;; org-present
+(straight-use-package 'org-present)
+(add-hook 'org-present-mode-hook
+          (lambda ()
+            (org-present-big)
+            (org-present-hide-cursor)
+            (org-present-read-only)
+            (org-display-inline-images)
+            (fci-mode -1)))
+(add-hook 'org-present-mode-quit-hook
+          (lambda ()
+            (org-present-small)
+            (org-present-show-cursor)
+            (org-present-read-write)
+            (org-remove-inline-images)
+	    (fci-mode)))
+
 ;; Misc
 (setq org-log-done t)
-(straight-use-package 'org-present)
 
 ;;-------------------------------------------------------------------------------------------------
 ;; gdb
