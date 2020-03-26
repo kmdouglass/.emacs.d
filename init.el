@@ -127,6 +127,13 @@
 (setq org-log-done t)
 
 ;;-------------------------------------------------------------------------------------------------
+;; deft
+(straight-use-package 'deft)
+(setq deft-extensions '("org"))
+(setq deft-directory "~/Dropbox/Org")
+(setq deft-recursive t)
+
+;;-------------------------------------------------------------------------------------------------
 ;; gdb
 
 (setq
