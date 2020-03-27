@@ -103,8 +103,10 @@
 
 ;; Language integrations
 (org-babel-do-load-languages 'org-babel-load-languages '(
-    (ditaa . t))
+    (ditaa . t)
+    (python . t))
 )
+(setq org-babel-python-command "python3")
 
 ;; org-present
 (straight-use-package 'org-present)
