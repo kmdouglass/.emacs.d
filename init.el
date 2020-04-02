@@ -20,10 +20,25 @@
 (exec-path-from-shell-initialize)
 
 ;;-------------------------------------------------------------------------------------------------
+;; Ergonomics
+
 ;; Remap keys (Colemak friendly)
 (global-set-key (kbd "C-t") 'forward-char)
 (global-set-key (kbd "C-f") 'backward-char)
 
+;; God mode
+(straight-use-package 'god-mode)
+(global-set-key (kbd "<escape>") 'god-local-mode)
+
+(defun my-update-cursor ()
+  (setq cursor-type (if (or god-local-mode buffer-read-only)
+                        'bar
+                      'box)))
+
+(add-hook 'god-mode-enabled-hook 'my-update-cursor)
+(add-hook 'god-mode-disabled-hook 'my-update-cursor)
+
+;;-------------------------------------------------------------------------------------------------
 ;; ibuffer
 (global-set-key (kbd"C-x C-b") 'ibuffer)
 
