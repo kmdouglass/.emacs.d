@@ -119,7 +119,8 @@
 ;; Language integrations
 (org-babel-do-load-languages 'org-babel-load-languages '(
     (ditaa . t)
-    (python . t))
+    (python . t)
+    (shell . t))
 )
 (setq org-babel-python-command "python3")
 
