@@ -43,6 +43,11 @@
 (global-set-key (kbd"C-x C-b") 'ibuffer)
 
 ;;-------------------------------------------------------------------------------------------------
+;; global line numbers mode
+(when (version<= "26.0.50" emacs-version)
+  (global-display-line-numbers-mode))
+
+;;-------------------------------------------------------------------------------------------------
 ;; interactively do things
 (require 'ido)
 (ido-mode t)
@@ -163,23 +168,12 @@
 
 ;; Python
 (load-file ".emacs.d/dev-python.el")
-(add-hook 'python-mode-hook 'display-line-numbers-mode)
 
 ;; Rust
 (load-file ".emacs.d/dev-rust.el")
-(add-hook 'rust-mode-hook 'display-line-numbers-mode)
-
-;; C/C++
-(add-hook 'c++-mode-hook 'display-line-numbers-mode)
-(add-hook 'c-mode 'display-line-numbers-mode)
-
-;;-------------------------------------------------------------------------------------------------
-;; elisp
-(add-hook 'emacs-lisp-mode-hook 'display-line-numbers-mode)
 
 ;;-------------------------------------------------------------------------------------------------
 ;; shell
-(add-hook 'sh-mode-hook 'display-line-numbers-mode)
 
 ;; Set the cabal directory, where cabal is installed
 (defvar shellcheck-executable (concat (getenv "HOME") "/.cabal/bin/shellcheck")
@@ -191,7 +185,6 @@
 ;;-------------------------------------------------------------------------------------------------
 ;; Powershell
 (straight-use-package 'powershell)
-(add-hook 'powershell-mode-hook 'display-line-numbers-mode)
 
 ;;-------------------------------------------------------------------------------------------------
 ;; Go
@@ -204,13 +197,11 @@
           (lambda ()
             (add-hook 'before-save-hook 'gofmt-before-save)
             (setq tab-width 4)
-            (setq indent-tabs-mode 1)
-	    (display-line-numbers-mode)))
+            (setq indent-tabs-mode 1)))
 
 ;;-------------------------------------------------------------------------------------------------
 ;; HCL
 (straight-use-package 'hcl-mode)
-(add-hook 'hcl-mode-hook 'display-line-numbers-mode)
 (add-to-list 'auto-mode-alist '("\\.tf" . hcl-mode))
 
 ;;-------------------------------------------------------------------------------------------------
@@ -222,7 +213,6 @@
 ;;-------------------------------------------------------------------------------------------------
 ;; JSON
 (straight-use-package 'json-mode)
-(add-hook 'json-mode-hook 'display-line-numbers-mode)
 (add-hook 'json-mode-hook
           (lambda ()
             (make-local-variable 'js-indent-level)
