@@ -20,7 +20,7 @@
 (exec-path-from-shell-initialize)
 
 ;;-------------------------------------------------------------------------------------------------
-;; Ergonomics
+;; Ergonomics and ease-of-use
 
 ;; Remap keys (Colemak friendly)
 (global-set-key (kbd "C-t") 'forward-char)
@@ -37,6 +37,13 @@
 
 (add-hook 'god-mode-enabled-hook 'my-update-cursor)
 (add-hook 'god-mode-disabled-hook 'my-update-cursor)
+
+;; Fill paragraph
+(defun unfill-paragraph ()
+  "Undo the 'fill-paragraph' operation that is used for wrapping text."
+  (interactive)
+  (let ((fill-column (point-max)))
+    (fill-paragraph nil)))
 
 ;;-------------------------------------------------------------------------------------------------
 ;; ibuffer
