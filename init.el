@@ -75,6 +75,11 @@
 (put 'dired-find-alternate-file 'disabled nil)
 
 ;;-------------------------------------------------------------------------------------------------
+;; magit
+(straight-use-package 'magit)
+(global-set-key (kbd "C-x g") 'magit-status)
+
+;;-------------------------------------------------------------------------------------------------
 ;; flycheck
 (straight-use-package 'flycheck)
 (add-hook 'after-init-hook #'global-flycheck-mode)
