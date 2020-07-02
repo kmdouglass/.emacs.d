@@ -69,7 +69,6 @@
 
 (setq-default fill-column 99)
 
-
 ;;-------------------------------------------------------------------------------------------------
 ;; dired
 (put 'dired-find-alternate-file 'disabled nil)
@@ -90,6 +89,10 @@
 (straight-use-package 'lsp-ui)
 
 ;;-------------------------------------------------------------------------------------------------
+;; keychain-environment
+(straight-use-package 'keychain-environment)
+
+;;-------------------------------------------------------------------------------------------------
 ;; Company mode
 (straight-use-package 'company)
 (add-hook 'after-init-hook 'global-company-mode)
@@ -97,6 +100,11 @@
 (setq company-idle-delay .2)    ; decrease delay before autocompletion popup shows
 
 (straight-use-package 'company-lsp)
+
+;;-------------------------------------------------------------------------------------------------
+;; yasnippet
+(straight-use-package 'yasnippet)
+(yas-global-mode 1)
 
 ;;-------------------------------------------------------------------------------------------------
 ;; Org mode
