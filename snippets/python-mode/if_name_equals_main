@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: if name equals main
+# key: inm
+# --
+if __name__ == "__main__":
