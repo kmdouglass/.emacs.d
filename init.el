@@ -45,6 +45,10 @@
   (let ((fill-column (point-max)))
     (fill-paragraph nil)))
 
+;; transpose-frame
+(straight-use-package 'transpose-frame)
+(global-set-key (kbd "C-c t") 'transpose-frame)
+
 ;;-------------------------------------------------------------------------------------------------
 ;; ibuffer
 (global-set-key (kbd"C-x C-b") 'ibuffer)
@@ -182,7 +186,10 @@
 (setq deft-recursive t)
 
 ;;-------------------------------------------------------------------------------------------------
-;; TRAMP
+;; Docker
+(straight-use-package 'docker)
+(global-set-key (kbd "C-c d") 'docker)
+
 (straight-use-package 'docker-tramp)
 
 ;;-------------------------------------------------------------------------------------------------
