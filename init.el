@@ -92,6 +92,9 @@
 (straight-use-package 'lsp-mode)
 (straight-use-package 'lsp-ui)
 
+(setq gc-cons-threshold 100000000)
+(setq read-process-output-max (* 1024 1024)) ;; 1mb
+
 ;;-------------------------------------------------------------------------------------------------
 ;; keychain-environment
 (straight-use-package 'keychain-environment)
@@ -101,7 +104,7 @@
 (straight-use-package 'company)
 (add-hook 'after-init-hook 'global-company-mode)
 (setq company-tooltip-limit 10) ; bigger popup window
-(setq company-idle-delay .2)    ; decrease delay before autocompletion popup shows
+(setq company-idle-delay 0.0)   ; decrease delay before autocompletion popup shows
 
 (straight-use-package 'company-lsp)
 
