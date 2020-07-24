@@ -211,9 +211,6 @@
 ;;-------------------------------------------------------------------------------------------------
 ;; Programming language specifics
 
-;; Python
-(load-file ".emacs.d/dev-python.el")
-
 ;; Rust
 (load-file ".emacs.d/dev-rust.el")
 
