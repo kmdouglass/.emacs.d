@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: for item in container
+# key: fic
+# --
+for ${1:item} in ${2:container}$0
