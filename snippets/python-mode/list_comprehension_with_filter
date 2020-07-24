@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: list comprehension with filter
+# key: lcf
+# --
+[for ${1:item} in ${2:container} if ${3:filter}]$0
