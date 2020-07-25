@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: date
+# key: d
+# --
+#+DATE: ${1:year}-${2:month}-${3:day}
+    $0

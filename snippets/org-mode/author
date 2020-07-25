@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: author
+# key: a
+# --
+#+AUTHOR: ${1:author}
+    $0
