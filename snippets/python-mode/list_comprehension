@@ -2,4 +2,4 @@
 # name: list comprehension
 # key: lc
 # --
-[for ${1:item} in ${2:container}]$0
+[${1:expression} for ${2:item} in ${3:container}]$0
