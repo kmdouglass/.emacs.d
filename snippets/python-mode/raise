@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: raise
+# key: r
+# --
+raise
+$0

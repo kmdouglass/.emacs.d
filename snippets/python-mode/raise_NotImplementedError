@@ -1,0 +1,6 @@
+# -*- mode: snippet -*-
+# name: raise NotImplementedError
+# key: rnie
+# --
+raise NotImplementedError
+$0
