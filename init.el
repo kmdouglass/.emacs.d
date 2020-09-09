@@ -160,6 +160,7 @@
     (shell . t))
 )
 (setq org-babel-python-command "python3")
+(setq org-confirm-babel-evaluate nil)
 
 ;; org-present
 (straight-use-package 'org-present)
