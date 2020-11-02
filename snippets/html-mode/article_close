@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: article close
+# key: arc
+# --
+$0</article>

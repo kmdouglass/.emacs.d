@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: article open
+# key: aro
+# --
+<article>$0

@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: meta charset utf-8
+# key: mcu
+# --
+<meta charset="UTF-8">

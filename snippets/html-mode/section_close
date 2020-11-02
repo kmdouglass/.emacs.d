@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: section close
+# key: sc
+# --
+$0</section>
