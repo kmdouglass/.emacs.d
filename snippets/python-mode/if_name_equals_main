@@ -1,5 +1,5 @@
 # -*- mode: snippet -*-
 # name: if name equals main
-# key: inm
+# key: inem
 # --
 if __name__ == "__main__":
