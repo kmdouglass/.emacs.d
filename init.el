@@ -162,6 +162,9 @@
 (setq org-babel-python-command "python3")
 (setq org-confirm-babel-evaluate nil)
 
+;; org ob-async
+(straight-use-package 'ob-async)
+
 ;; org-present
 (straight-use-package 'org-present)
 (add-hook 'org-present-mode-hook
