@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: options_standard
+# key: os
+# --
+#+OPTIONS: ^:nil$0

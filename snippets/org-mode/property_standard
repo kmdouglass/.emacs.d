@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: property_standard
+# key: ps
+# --
+#+PROPERTY: header-args :results output :exports both :eval never-export$0
