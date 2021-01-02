@@ -1,0 +1,5 @@
+# -*- mode: snippet -*-
+# name: equals_true_false
+# key: etf
+# --
+= ${1:$$(yas-choose-value '("true" "false"))};$0
